@@ -12,9 +12,15 @@ width, height = im.size
 def define_brightness(pixel):
     return (pixel[0] + pixel[1] + pixel[2])/3
 
+def define_brightness_minmax(pixel):
+    return (min(pixel[0],pixel[1],pixel[2]) + max(pixel[0], pixel[1], pixel[0]))/2
+
+def define_brightness_luminosity(pixel):
+    return (0.21*pixel[0] + 0.71*pixel[1] + 0.07*pixel[2])
+
 for column in range(width):
     for row in range(height):
-        pixels_modified[column, row] = (define_brightness(pixels[column, row]))
+        pixels_modified[column, row] = (define_brightness_luminosity(pixels[column, row]))
 
 chars = "`^\",:;Il!i~+_-?][}{1)(|\\/tfjrxnuvczXYUJCLQ0OZmwqpdbkhao*#MW&8%B@$"
 
